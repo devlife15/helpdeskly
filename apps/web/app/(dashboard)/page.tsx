@@ -14,7 +14,6 @@ export default function Page() {
         <p>Web</p>
         <OrganizationSwitcher hidePersonal />
         <Button onClick={() => addUser()}>Add User</Button>
-        {JSON.stringify(users)}
       </div>
     </div>
   );
