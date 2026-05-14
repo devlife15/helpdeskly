@@ -4,6 +4,7 @@ import { SidebarProvider } from "@workspace/ui/components/sidebar";
 import { DashboardSidebar } from "@/app/modules/dashboard/ui/components/dashboard-sidebar";
 import { cookies } from "next/headers";
 import { ReactNode } from "react";
+import { Provider } from "jotai";
 
 export const DashboardLayout = async ({
   children,
@@ -15,13 +16,15 @@ export const DashboardLayout = async ({
   return (
     <AuthGuard>
       <OrganizationGuard>
-        <SidebarProvider defaultOpen={defaultOpen}>
-          <DashboardSidebar />
-          <main className="flex flex-1 flex-col overflow-hidden">
-            {/* {delete overflow-hidden} */}
-            {children}
-          </main>
-        </SidebarProvider>
+        <Provider>
+          <SidebarProvider defaultOpen={defaultOpen}>
+            <DashboardSidebar />
+            <main className="flex flex-1 flex-col overflow-hidden">
+              {/* {delete overflow-hidden} */}
+              {children}
+            </main>
+          </SidebarProvider>
+        </Provider>
       </OrganizationGuard>
     </AuthGuard>
   );
