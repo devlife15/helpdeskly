@@ -157,7 +157,7 @@ export const addFile = action({
 export const list = query({
   args: {
     category: v.optional(v.string()),
-    paginationsOpts: paginationOptsValidator,
+    paginationOpts: paginationOptsValidator,
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -192,7 +192,7 @@ export const list = query({
 
     const results = await rag.list(ctx, {
       namespaceId: namespace.namespaceId,
-      paginationOpts: args.paginationsOpts,
+      paginationOpts: args.paginationOpts,
     });
 
     const files = await Promise.all(
