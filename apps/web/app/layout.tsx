@@ -4,6 +4,7 @@ import "@workspace/ui/styles/globals.css";
 import { Providers } from "@/components/providers";
 import { ClerkProvider } from "@clerk/nextjs";
 import { cn } from "@workspace/ui/lib/utils";
+import { Toaster } from "@workspace/ui/components/sonner";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -32,7 +33,10 @@ export default function RootLayout({
         className={`${outfit.variable} ${fontMono.variable} font-sans ${fontSans.variable} antialiased `}
       >
         <ClerkProvider>
-          <Providers>{children}</Providers>
+          <Providers>
+            <Toaster />
+            {children}
+          </Providers>
         </ClerkProvider>
       </body>
     </html>
