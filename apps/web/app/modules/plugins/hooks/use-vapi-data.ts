@@ -6,7 +6,7 @@ import { api } from "@workspace/backend/_generated/api";
 type PhoneNumbers = typeof api.private.vapi.getPhoneNumbers._returnType;
 type Assistants = typeof api.private.vapi.getAssistants._returnType;
 
-export const useAssistants = (): {
+export const useVapiAssistants = (): {
   data: Assistants;
   isLoading: boolean;
   error: Error | null;
