@@ -78,6 +78,7 @@ export const PluginCard = ({
           onClick={onSubmit}
           variant="default"
         >
+          <PlugIcon />
           Connect
         </Button>
       </div>
