@@ -1,7 +1,7 @@
-import { AuthGuard } from "@/app/modules/auth/ui/components/auth-guard";
-import { OrganizationGuard } from "@/app/modules/auth/ui/components/org-guard";
+import { AuthGuard } from "@/modules/auth/ui/components/auth-guard";
+import { OrganizationGuard } from "@/modules/auth/ui/components/org-guard";
 import { SidebarProvider } from "@workspace/ui/components/sidebar";
-import { DashboardSidebar } from "@/app/modules/dashboard/ui/components/dashboard-sidebar";
+import { DashboardSidebar } from "@/modules/dashboard/ui/components/dashboard-sidebar";
 import { cookies } from "next/headers";
 import { ReactNode } from "react";
 import { Provider } from "jotai";
