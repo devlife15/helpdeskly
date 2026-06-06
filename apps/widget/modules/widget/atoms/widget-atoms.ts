@@ -3,7 +3,7 @@ import { WidgetScreen } from "../types";
 import { atomWithStorage } from "jotai/utils";
 import { atomFamily } from "jotai-family";
 import { CONTACT_SESSION_KEY } from "../constants";
-import { Id } from "@workspace/backend/_generated/dataModel";
+import { Doc, Id } from "@workspace/backend/_generated/dataModel";
 
 export const screenAtom = atom<WidgetScreen>("loading");
 
@@ -19,3 +19,4 @@ export const contactSessionIdAtomFamily = atomFamily((organizationId: string) =>
 );
 
 export const conversationIdAtom = atom<Id<"conversations"> | null>(null);
+export const widgetSettingsAtom = atom<Doc<"widgetSettings"> | null>(null);

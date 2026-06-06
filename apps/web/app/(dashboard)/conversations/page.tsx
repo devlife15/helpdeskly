@@ -1,4 +1,4 @@
-import { ConversationsView } from "@/app/modules/dashboard/ui/views/conversations-view";
+import { ConversationsView } from "@/modules/dashboard/ui/views/conversations-view";
 
 const Page = () => {
   return <ConversationsView />;

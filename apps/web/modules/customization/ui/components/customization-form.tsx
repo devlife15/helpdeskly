@@ -118,7 +118,7 @@ export const CustomizationForm = ({
             <div className="space-y-4">
               <h3 className="mb-4 text-sm">Default Suggestions</h3>
               <p className="mb-4 text-muted-foreground text-sm">
-                Quick reply suggestions to shown to customers to help guide the
+                Quick reply suggestions shown to customers to help guide the
                 conversation
               </p>
               <div className="space-y-4">
@@ -174,6 +174,7 @@ export const CustomizationForm = ({
             </div>
           </CardContent>
         </Card>
+        {/* {shown only when vapi plugin is connected} */}
         {hasVapiPlugin && (
           <Card>
             <CardHeader>

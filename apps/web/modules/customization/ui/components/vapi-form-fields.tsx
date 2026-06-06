@@ -60,7 +60,7 @@ export const VapiFormFields = ({ form }: VapiFormFieldProps) => {
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                <SelectItem value="none"></SelectItem>
+                <SelectItem value="none">None</SelectItem>
                 {assistants.map((assistant) => (
                   <SelectItem value={assistant.id} key={assistant.id}>
                     {assistant.name || "Unnamed Assistant"} -{" "}

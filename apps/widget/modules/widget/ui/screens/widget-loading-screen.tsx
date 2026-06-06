@@ -8,10 +8,11 @@ import {
   organizationAtom,
   screenAtom,
   contactSessionIdAtomFamily,
+  widgetSettingsAtom,
 } from "../../atoms/widget-atoms";
 import { LoaderIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useAction, useMutation } from "convex/react";
+import { useAction, useMutation, useQuery } from "convex/react";
 import { api } from "@workspace/backend/_generated/api";
 
 type InitStep = "org" | "session" | "settings" | "vapi" | "done";
@@ -25,6 +26,7 @@ export const WidgetLoadingScreen = ({
   const [sessionValid, setSessionValid] = useState(false);
   const setErrorMessage = useSetAtom(errorMessageAtom);
   const loadingMessage = useAtomValue(loadingMessageAtom);
+  const setWidgetSettings = useSetAtom(widgetSettingsAtom);
   const setScreen = useSetAtom(screenAtom);
   const setOrganizationId = useSetAtom(organizationAtom);
   const setLoadingMessage = useSetAtom(loadingMessageAtom);
@@ -81,7 +83,7 @@ export const WidgetLoadingScreen = ({
 
     if (!contactSessionId) {
       setSessionValid(false);
-      setStep("done");
+      setStep("settings");
       return;
     }
 
@@ -92,13 +94,40 @@ export const WidgetLoadingScreen = ({
     })
       .then((result) => {
         setSessionValid(result.valid);
-        setStep("done");
+        setStep("settings");
       })
       .catch(() => {
         setSessionValid(false);
-        setStep("done");
+        setStep("settings");
       });
   }, [step, contactSessionId, validateContactSession, setLoadingMessage]);
+
+  // for loading widget settings after validation
+
+  const widgetSettings = useQuery(
+    api.public.widgetSettings.getByOrganizationId,
+    organizationId
+      ? {
+          organizationId,
+        }
+      : "skip",
+  );
+
+  useEffect(() => {
+    if (step !== "settings") {
+      return;
+    }
+
+    setLoadingMessage("Loading widget settings...");
+
+    if (widgetSettings !== undefined) {
+      setWidgetSettings(widgetSettings);
+      setStep("done");
+    }
+  }, [step, widgetSettings, setStep, setWidgetSettings, setLoadingMessage]);
+
+  // have to research about adding setters in dependency array because we don't generally add setters in
+  // dependency array like above
 
   useEffect(() => {
     if (step !== "done") return;
