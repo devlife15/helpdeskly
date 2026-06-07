@@ -40,12 +40,28 @@ export const WidgetVoiceScreen = () => {
           <p>Voice Chat</p>
         </div>
       </WidgetHeader>
-      <div className="flex flex-1 h-full flex-col items-center justify-center gap-y-4">
-        <div className="flex items-center justify-center rounded-full border bg-white p-3">
-          <MicIcon className="size-6 text-muted-foreground" />
+      {transcript.length > 0 ? (
+        <AIConversation className="h-full flex-1">
+          <AIConversationContent>
+            {transcript.map((message, index) => (
+              <AIMessage
+                from={message.role}
+                key={`${message.role}-${index}-${message.text}`}
+              >
+                <AIMessageContent>{message.text}</AIMessageContent>
+              </AIMessage>
+            ))}
+          </AIConversationContent>
+          <AIConversationScrollButton />
+        </AIConversation>
+      ) : (
+        <div className="flex flex-1 h-full flex-col items-center justify-center gap-y-4">
+          <div className="flex items-center justify-center rounded-full border bg-white p-3">
+            <MicIcon className="size-6 text-muted-foreground" />
+          </div>
+          <p className="text-muted-foreground">Transcript will appear here</p>
         </div>
-        <p className="text-muted-foreground">Transcript will appear here</p>
-      </div>
+      )}
       <div className="border-t bg-background p-4">
         <div className="flex flex-col items-center gap-y-4">
           {isConnected && (
