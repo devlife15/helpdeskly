@@ -1,31 +1,48 @@
-# shadcn/ui monorepo template
+# help-deskly
 
-This template is for creating a monorepo with shadcn/ui.
+A multi-tenant helpdesk platform built for teams that need more than a ticket queue.
 
-## Usage
+## What it does
+
+help-deskly lets organizations embed a support widget directly into their product. Each organization gets its own isolated widget, powered by a shared backend. Users can raise tickets and ask questions, with answers pulled from company-wide documentation via a built-in RAG pipeline.
+
+## Key features
+
+- Per-organization embeddable widget with isolated data
+- Multi-tenant architecture with Clerk-based authentication
+- RAG functionality for querying internal company knowledge
+- Real-time backend powered by Convex
+- Monorepo structure separating the dashboard app and the widget app
+
+## Tech stack
+
+- Next.js (dashboard)
+- Convex (real-time backend)
+- Clerk (auth and multi-tenancy)
+- Vercel AI SDK
+- Turborepo (monorepo)
+- TypeScript
+
+## Project structure
+
+```
+apps/
+  dashboard/     # Admin and agent-facing interface
+  widget/        # Embeddable customer-facing widget
+packages/
+  ui/            # Shared components
+  convex/        # Shared backend logic
+```
+
+## Status
+
+Currently in active development. Running locally.
+
+## Getting started
 
 ```bash
-pnpm dlx shadcn@latest init
+pnpm install
+pnpm dev
 ```
 
-## Adding components
-
-To add components to your app, run the following command at the root of your `web` app:
-
-```bash
-pnpm dlx shadcn@latest add button -c apps/web
-```
-
-This will place the ui components in the `packages/ui/src/components` directory.
-
-## Tailwind
-
-Your `tailwind.config.ts` and `globals.css` are already set up to use the components from the `ui` package.
-
-## Using components
-
-To use the components in your app, import them from the `ui` package.
-
-```tsx
-import { Button } from "@workspace/ui/components/button"
-```
+> Requires Convex and Clerk credentials. Copy `.env.example` to `.env.local` and fill in your keys.
