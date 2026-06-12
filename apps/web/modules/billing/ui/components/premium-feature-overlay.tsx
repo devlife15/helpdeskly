@@ -36,11 +36,32 @@ const features: Feature[] = [
     label: "AI Customer Support",
     description: "Intelligent automated responses 24/7",
   },
+  {
+    icon: MicIcon,
+    label: "AI Voice Agent",
+    description: "Natural voice conversations with customers",
+  },
+  {
+    icon: PhoneIcon,
+    label: "Phone System",
+    description: "Inbound & outbound calling capabilities",
+  },
+  {
+    icon: BookOpenIcon,
+    label: "Knowledge Base",
+    description: "Train AI on your documentation",
+  },
+  {
+    icon: UsersIcon,
+    label: "Widget Customization",
+    description: "Customize your chat widget appearance",
+  },
 ];
 
 export const PremiumFeatureOverlay = ({
   children,
 }: PremiumFeatureOverlayProps) => {
+  const router = useRouter();
   return (
     <div className="relative min-h-screen">
       <div className="pointer-events-none select-none blur-[2px]">
@@ -62,7 +83,28 @@ export const PremiumFeatureOverlay = ({
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="space-y-6"></div>
+            <div className="space-y-6">
+              {features.map((feature) => (
+                <div className="flex items-center gap-3" key={feature.label}>
+                  <div className="flex size-8 items-center justify-center rounded-lg border bg-muted">
+                    <feature.icon className="size-4 text-muted-foreground" />
+                  </div>
+                  <div className="text-left">
+                    <p className="font-medium text-sm">{feature.label}</p>
+                    <p className="text-muted-foreground text-xs">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <Button
+              className="w-full cursor-pointer"
+              onClick={() => router.push("/billing")}
+              size="lg"
+            >
+              View Plans
+            </Button>
           </CardContent>
         </Card>
       </div>

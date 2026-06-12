@@ -90,6 +90,9 @@ importers:
       sonner:
         specifier: ^2.0.7
         version: 2.0.7(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      svix:
+        specifier: ^1.95.2
+        version: 1.95.2
       zod:
         specifier: ^3.25.76
         version: 3.25.76
@@ -233,6 +236,9 @@ importers:
       rag^0.3.3:
         specifier: link:@convex-dev/rag^0.3.3
         version: link:@convex-dev/rag^0.3.3
+      svix:
+        specifier: ^1.95.2
+        version: 1.95.2
       zod:
         specifier: ^3.25.76
         version: 3.25.76
@@ -6408,6 +6414,9 @@ packages:
   supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  svix@1.95.2:
+    resolution: {integrity: sha512-i2gDtqABKQritWlFOxQHr+Oa63PBQ3q1oUhwhNwJgH+Xi0NjgWz5o6nd+8EwgNFGrH6UOe3wjKZtbZmjVn9r8w==}
 
   swap-case@1.1.2:
     resolution: {integrity: sha512-BAmWG6/bx8syfc6qXPprof3Mn5vQgf5dwdUNJhsNqU9WdPt5P+ES/wQ5bxfijy8zwZgZZHslC3iAsxsuQMCzJQ==}
@@ -13715,6 +13724,10 @@ snapshots:
       has-flag: 4.0.0
 
   supports-preserve-symlinks-flag@1.0.0: {}
+
+  svix@1.95.2:
+    dependencies:
+      standardwebhooks: 1.0.0
 
   swap-case@1.1.2:
     dependencies:
