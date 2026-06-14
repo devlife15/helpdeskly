@@ -52,9 +52,23 @@ export const create = action({
       });
     }
 
-    // todo implement subscription check
+    // refreshing the session duration as long as they are sending messages or active
 
-    const shouldTriggerAgent = conversation.status === "unresolved";
+    await ctx.runMutation(internal.system.contactSessions.refresh, {
+      contactSessionId: args.contactSessionId,
+    });
+
+    // subscription check
+
+    const subscription = await ctx.runQuery(
+      internal.system.subscriptions.getByOrganizationId,
+      {
+        organizationId: conversation.organizationId,
+      },
+    );
+
+    const shouldTriggerAgent =
+      conversation.status === "unresolved" && subscription?.status === "active";
 
     if (shouldTriggerAgent) {
       await supportAgent.generateText(
